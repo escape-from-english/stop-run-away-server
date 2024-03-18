@@ -18,7 +18,7 @@ class WordController(
 
     @PostMapping("/words/excels")
     fun addWordExcel(request: Request.AddWordExcel) {
-
+        wordService.addWordExcel(request.excelFile)
     }
 
     @GetMapping("/words")
