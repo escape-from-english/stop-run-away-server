@@ -25,6 +25,11 @@ class WordController(
     fun getRandomWord(): String {
         return wordService.getRandomWord()
     }
+
+    @GetMapping("/words/existence")
+    fun isWordsExistence(): Boolean {
+        return wordService.isWordsExistence()
+    }
 }
 
 class Request {

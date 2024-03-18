@@ -30,4 +30,8 @@ class WordService(
         pickedWord?.submit()
         return pickedWord?.name ?: ""
     }
+
+    fun isWordsExistence(): Boolean {
+        return wordRepository.existsNotSolvedWordsByTodayDate()
+    }
 }
