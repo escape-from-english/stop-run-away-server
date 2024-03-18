@@ -1,6 +1,12 @@
+### 단어 텍스트로 추가
+
 POST localhost:8080/words
 Content-Type: application/json
 
 {
   "words": ["a", "b", "c"]
 }
+
+### 단어 랜덤 제출
+
+GET localhost:8080/words

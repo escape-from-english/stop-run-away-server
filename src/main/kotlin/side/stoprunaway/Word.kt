@@ -27,12 +27,14 @@ class Word(
         fun make(name: String): Word {
             return Word(
                 name = name,
-                status = WordStatus.NOT_SOLVED,
+                status = WordStatus.NOT_SUBMITTED,
             )
         }
     }
+
+    fun submit() { status = WordStatus.SUBMITTED }
 }
 
 enum class WordStatus {
-    NOT_SOLVED, SOLVED
+    NOT_SUBMITTED, SUBMITTED
 }

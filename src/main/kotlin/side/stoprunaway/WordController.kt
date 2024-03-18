@@ -22,8 +22,8 @@ class WordController(
     }
 
     @GetMapping("/words")
-    fun getRandomWord() {
-
+    fun getRandomWord(): String {
+        return wordService.getRandomWord()
     }
 }
 
@@ -34,11 +34,5 @@ class Request {
 
     data class AddWordExcel(
         val excelFile: MultipartFile
-    )
-}
-
-class Response {
-    data class GetRandomWord(
-        val word: String
     )
 }

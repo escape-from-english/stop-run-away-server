@@ -24,7 +24,10 @@ class WordService(
             .forEach { wordRepository.save(it) }
     }
 
-    fun getRandomWord() {
-
+    @Transactional
+    fun getRandomWord(): String {
+        val pickedWord = wordRepository.findNotSolvedWordsByTodayDate().randomOrNull()
+        pickedWord?.submit()
+        return pickedWord?.name ?: ""
     }
 }
