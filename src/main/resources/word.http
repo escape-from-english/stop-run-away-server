@@ -1,0 +1,6 @@
+POST localhost:8080/words
+Content-Type: application/json
+
+{
+  "words": ["a", "b", "c"]
+}
