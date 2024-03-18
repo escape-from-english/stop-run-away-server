@@ -9,7 +9,7 @@ resource "aws_instance" "stop_run_away" {
 }
 
 resource "aws_security_group" "stop_run_away" {
-  name        = "stop_run_away-security-group"
+  name        = "stop_run_away-ec2-security-group"
 
   ingress {
     description = "SSH"
