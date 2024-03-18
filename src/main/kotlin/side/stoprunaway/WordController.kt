@@ -11,8 +11,8 @@ class WordController(
     private val wordService: WordService,
 ) {
 
-    @PostMapping("/v1/words")
-    fun addWord(@RequestBody request: Request.AddWord) {
+    @PostMapping("/v1/words/texts")
+    fun addWord(@RequestBody request: Request.AddWordText) {
         wordService.addWord(request.words)
     }
 
@@ -21,19 +21,19 @@ class WordController(
         wordService.addWordExcel(request.excelFile)
     }
 
-    @GetMapping("/v1/words")
+    @GetMapping("/v1/words/status/not-solved/random")
     fun getNotSolvedRandomWord(): String {
         return wordService.getNotSolvedRandomWord()
     }
 
-    @GetMapping("/v1/words/existence")
+    @GetMapping("/v1/words/status/not-solved/existence")
     fun isNotSolvedWordsExistence(): Boolean {
         return wordService.isWordsNotSolvedExistence()
     }
 }
 
 class Request {
-    data class AddWord(
+    data class AddWordText(
         val words: List<String>
     )
 
