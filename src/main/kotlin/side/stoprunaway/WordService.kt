@@ -25,13 +25,13 @@ class WordService(
     }
 
     @Transactional
-    fun getRandomWord(): String {
+    fun getNotSolvedRandomWord(): String {
         val pickedWord = wordRepository.findNotSolvedWordsByTodayDate().randomOrNull()
         pickedWord?.submit()
         return pickedWord?.name ?: ""
     }
 
-    fun isWordsExistence(): Boolean {
+    fun isWordsNotSolvedExistence(): Boolean {
         return wordRepository.existsNotSolvedWordsByTodayDate()
     }
 }

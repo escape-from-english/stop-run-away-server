@@ -22,13 +22,13 @@ class WordController(
     }
 
     @GetMapping("/v1/words")
-    fun getRandomWord(): String {
-        return wordService.getRandomWord()
+    fun getNotSolvedRandomWord(): String {
+        return wordService.getNotSolvedRandomWord()
     }
 
     @GetMapping("/v1/words/existence")
-    fun isWordsExistence(): Boolean {
-        return wordService.isWordsExistence()
+    fun isNotSolvedWordsExistence(): Boolean {
+        return wordService.isWordsNotSolvedExistence()
     }
 }
 
