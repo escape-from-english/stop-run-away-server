@@ -11,22 +11,22 @@ class WordController(
     private val wordService: WordService,
 ) {
 
-    @PostMapping("/words")
+    @PostMapping("/v1/words")
     fun addWord(@RequestBody request: Request.AddWord) {
         wordService.addWord(request.words)
     }
 
-    @PostMapping("/words/excels")
+    @PostMapping("/v1/words/excels")
     fun addWordExcel(request: Request.AddWordExcel) {
         wordService.addWordExcel(request.excelFile)
     }
 
-    @GetMapping("/words")
+    @GetMapping("/v1/words")
     fun getRandomWord(): String {
         return wordService.getRandomWord()
     }
 
-    @GetMapping("/words/existence")
+    @GetMapping("/v1/words/existence")
     fun isWordsExistence(): Boolean {
         return wordService.isWordsExistence()
     }
