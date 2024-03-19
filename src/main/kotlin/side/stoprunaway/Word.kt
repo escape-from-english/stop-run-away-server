@@ -11,6 +11,8 @@ class Word(
 
     var name: String,
 
+    var meaning: String,
+
     @Enumerated(value = EnumType.ORDINAL)
     var status: WordStatus,
 
@@ -24,9 +26,10 @@ class Word(
 ) {
 
     companion object {
-        fun make(name: String): Word {
+        fun make(name: String, meaning: String): Word {
             return Word(
                 name = name,
+                meaning = meaning,
                 status = WordStatus.NOT_SOLVED,
             )
         }

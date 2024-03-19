@@ -10,25 +10,25 @@ class WordService(
 ) {
 
     @Transactional
-    fun addWord(words: List<String>) {
-        words.filterNot { wordRepository.existsByNameAndTodayDate(it) }
-            .map { Word.make(it) }
+    fun addWord(words: List<Model.Word>) {
+        words.filterNot { wordRepository.existsByNameAndTodayDate(it.name) }
+            .map { Word.make(it.name, it.meaning) }
             .forEach { wordRepository.save(it) }
     }
 
     @Transactional
     fun addWordExcel(excelFile: MultipartFile) {
         ExcelUtils.readFirstColumn(excelFile)
-            .filterNot { wordRepository.existsByNameAndTodayDate(it) }
-            .map { Word.make(it) }
+            .filterNot { wordRepository.existsByNameAndTodayDate(it.name) }
+            .map { Word.make(it.name, it.meaning) }
             .forEach { wordRepository.save(it) }
     }
 
     @Transactional
-    fun getNotSolvedRandomWord(): String {
+    fun getNotSolvedRandomWord(): Model.Word? {
         val pickedWord = wordRepository.findNotSolvedWordsByTodayDate().randomOrNull()
         pickedWord?.submit()
-        return pickedWord?.name ?: ""
+        return pickedWord?.let { Model.Word(it.name, it.meaning) }
     }
 
     fun isWordsNotSolvedExistence(): Boolean {

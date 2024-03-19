@@ -4,7 +4,20 @@ POST localhost:8080/v1/words/texts
 Content-Type: application/json
 
 {
-  "words": ["a", "b", "c"]
+  "words": [
+    {
+      "name": "A",
+      "meaning": "A"
+    },
+    {
+      "name": "B",
+      "meaning": "B"
+    },
+    {
+      "name": "C",
+      "meaning": "C"
+    }
+  ]
 }
 
 ### 단어 랜덤 제출

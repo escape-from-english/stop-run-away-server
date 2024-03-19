@@ -22,8 +22,8 @@ class WordController(
     }
 
     @GetMapping("/v1/words/status/not-solved/random")
-    fun getNotSolvedRandomWord(): String {
-        return wordService.getNotSolvedRandomWord()
+    fun getNotSolvedRandomWord(): Response.GetNotSolvedRandomWord {
+        return Response.GetNotSolvedRandomWord(wordService.getNotSolvedRandomWord())
     }
 
     @GetMapping("/v1/words/status/not-solved/existence")
@@ -34,10 +34,16 @@ class WordController(
 
 class Request {
     data class AddWordText(
-        val words: List<String>
+        val words: List<Model.Word>
     )
 
     data class AddWordExcel(
         val excelFile: MultipartFile
+    )
+}
+
+class Response {
+    data class GetNotSolvedRandomWord(
+        val word: Model.Word?
     )
 }
