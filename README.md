@@ -14,7 +14,7 @@ POST {api-url}/v1/words/texts
 
 Request
 {
-  "words" : List<String>
+  "words": List<Word>
 }
 ```
 
@@ -39,7 +39,9 @@ Request
 GET {api-url}/v1/words/status/not-solved/random
 
 Response
-String
+{
+  word: Word
+}
 ```
 
 #### 풀지 않은 문제 존재 여부
@@ -49,6 +51,22 @@ GET {api-url}/v1/words/status/not-solved/existence
 
 Resposne
 Boolean
+```
+
+</details>
+
+## Model
+
+<details>
+  <summary>펼치기</summary>
+
+### Word
+
+```
+data class Word(
+    val name: String,
+    val meaning: String,
+)
 ```
 
 </details>
