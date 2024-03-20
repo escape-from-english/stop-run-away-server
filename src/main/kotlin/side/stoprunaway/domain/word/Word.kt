@@ -1,6 +1,7 @@
 package side.stoprunaway.domain.word
 
 import jakarta.persistence.*
+import side.stoprunaway.domain.Base
 import java.time.LocalDateTime
 
 @Entity
@@ -15,15 +16,7 @@ class Word(
 
     @Enumerated(value = EnumType.ORDINAL)
     var status: WordStatus,
-
-    var createdAt: LocalDateTime? = LocalDateTime.now(),
-
-    var createdBy: String? = "SYSTEM",
-
-    var updatedAt: LocalDateTime = LocalDateTime.now(),
-
-    var updatedBy: String = "SYSTEM",
-) {
+): Base() {
 
     companion object {
         fun make(name: String, meaning: String): Word {
