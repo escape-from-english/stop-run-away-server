@@ -2,7 +2,7 @@ package side.stoprunaway.domain.word
 
 import jakarta.persistence.*
 import side.stoprunaway.domain.Base
-import java.time.LocalDateTime
+import side.stoprunaway.domain.member.Member
 
 @Entity
 class Word(
@@ -14,16 +14,21 @@ class Word(
 
     var meaning: String,
 
+    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    var member: Member,
+
     @Enumerated(value = EnumType.ORDINAL)
     var status: WordStatus,
 ): Base() {
 
     companion object {
-        fun make(name: String, meaning: String): Word {
+        fun make(name: String, meaning: String, identifier: Long): Word {
             return Word(
                 name = name,
                 meaning = meaning,
                 status = WordStatus.NOT_SOLVED,
+                member = Member(id = identifier)
             )
         }
     }

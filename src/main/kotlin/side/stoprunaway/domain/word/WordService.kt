@@ -12,17 +12,17 @@ class WordService(
 ) {
 
     @Transactional
-    fun addWord(words: List<Model.Word>) {
+    fun addWord(words: List<Model.Word>, identifier: Long) {
         words.filterNot { wordRepository.existsByNameAndTodayDate(it.name) }
-            .map { Word.make(it.name, it.meaning) }
+            .map { Word.make(it.name, it.meaning, identifier) }
             .forEach { wordRepository.save(it) }
     }
 
     @Transactional
-    fun addWordExcel(excelFile: MultipartFile) {
+    fun addWordExcel(excelFile: MultipartFile, identifier: Long) {
         ExcelUtils.readFirstColumn(excelFile)
             .filterNot { wordRepository.existsByNameAndTodayDate(it.name) }
-            .map { Word.make(it.name, it.meaning) }
+            .map { Word.make(it.name, it.meaning, identifier) }
             .forEach { wordRepository.save(it) }
     }
 
@@ -35,5 +35,13 @@ class WordService(
 
     fun isWordsNotSolvedExistence(): Boolean {
         return wordRepository.existsNotSolvedWordsByTodayDate()
+    }
+
+    fun getWords(identifier: Long): List<Model.Word> {
+        return wordRepository.findAllByMemberIdAndStatus(identifier, WordStatus.NOT_SOLVED)
+            .map { Model.Word(
+                it.name,
+                it.meaning
+            ) }
     }
 }

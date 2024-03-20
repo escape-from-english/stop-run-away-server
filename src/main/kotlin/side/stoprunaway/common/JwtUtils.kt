@@ -10,12 +10,12 @@ class JwtUtils {
     companion object {
         private val key = Keys.hmacShaKeyFor("dGhpc2lzanVzdGFuZXhhbXBsZWtleWZvcnlvdVRoaXNpc2Fub3RoZXJleGFtcGxla2V5b3VtaWdodHVzZQ==".toByteArray())
 
-        fun generateToken(username: String): String {
+        fun generateToken(identifier: Long): String {
             val now = Date()
             val expiryDate = Date(now.time + 259200)
 
             return Jwts.builder()
-                .setSubject(username)
+                .setSubject(identifier.toString())
                 .setIssuedAt(Date())
                 .setExpiration(expiryDate)
                 .signWith(key, SignatureAlgorithm.HS512)

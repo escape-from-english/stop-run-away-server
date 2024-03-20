@@ -9,9 +9,7 @@ class MemberService(
 ) {
 
     fun signIn(name: String): String? {
-        if (memberRepository.existsByName(name)) {
-            return JwtUtils.generateToken(name)
-        }
-        return null
+        val member = memberRepository.findByName(name) ?: return null
+        return JwtUtils.generateToken(member.id)
     }
 }

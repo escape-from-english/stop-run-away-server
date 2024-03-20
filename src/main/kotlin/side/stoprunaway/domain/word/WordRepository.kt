@@ -13,4 +13,6 @@ interface WordRepository: JpaRepository<Word, Long> {
 
     @Query("SELECT COUNT(w) > 0 FROM Word w WHERE w.status = 0 AND FUNCTION('DATE', w.createdAt) = CURRENT_DATE")
     fun existsNotSolvedWordsByTodayDate(): Boolean
+
+    fun findAllByMemberIdAndStatus(memberId: Long, status: WordStatus): List<Word>
 }

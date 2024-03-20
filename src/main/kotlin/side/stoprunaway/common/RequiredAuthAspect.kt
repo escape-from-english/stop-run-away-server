@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Aspect
 @Component
 class RequiredAuthAspect(
-    private val request: HttpServletRequest
+    private val request: HttpServletRequest,
 ) {
 
     @Pointcut("@annotation(RequiredAuth)")
@@ -21,7 +21,7 @@ class RequiredAuthAspect(
         val token = request.getHeader("Authorization")?.substring("Bearer ".length)
         if (token != null) {
             val claims = JwtUtils.validateTokenAndGetClaims(token)
-            request.setAttribute("name", claims.subject)
+            request.setAttribute("identifier", claims.subject)
         } else {
             throw IllegalStateException("JWT Token is required")
         }

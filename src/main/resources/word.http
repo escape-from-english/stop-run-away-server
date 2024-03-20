@@ -2,6 +2,7 @@
 
 POST localhost:8080/v1/words/texts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzEwOTI3OTcyLCJleHAiOjE3MTA5MjgyMzF9.SP_0xI_amhmxmBD2QispooPvHridEixo2WW7lbvSzK4lN54iQIfY8j_8dLGR3BhSRqi8PmpQxlm7p-X6kJ2RPA
 
 {
   "words": [
@@ -20,10 +21,15 @@ Content-Type: application/json
   ]
 }
 
-### 단어 랜덤 제출
+### 단어 랜덤 출제
 
-GET 3.39.240.48:8080/v1/words/status/not-solved/random
+GET localhost:8080/v1/words/status/not-solved/random
 
 ### 미제출 단어 존재 여부
 
-GET 3.39.240.48:8080/v1/words/status/not-solved/existence
+GET localhost:8080/v1/words/status/not-solved/existence
+
+### 등록한 단어중 미출제 단어들 조회
+
+GET localhost:8080/v1/words/status/not-solved
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzEwOTI3OTcyLCJleHAiOjE3MTA5MjgyMzF9.SP_0xI_amhmxmBD2QispooPvHridEixo2WW7lbvSzK4lN54iQIfY8j_8dLGR3BhSRqi8PmpQxlm7p-X6kJ2RPA
