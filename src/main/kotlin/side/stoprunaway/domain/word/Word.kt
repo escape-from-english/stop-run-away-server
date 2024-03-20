@@ -1,4 +1,4 @@
-package side.stoprunaway
+package side.stoprunaway.domain.word
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
@@ -35,7 +35,8 @@ class Word(
         }
     }
 
-    fun submit() { status = WordStatus.SOLVED }
+    fun submit() { status = WordStatus.SOLVED
+    }
 }
 
 enum class WordStatus {

@@ -1,8 +1,10 @@
-package side.stoprunaway
+package side.stoprunaway.domain.word
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.multipart.MultipartFile
+import side.stoprunaway.common.ExcelUtils
+import side.stoprunaway.common.Model
 
 @Service
 class WordService(

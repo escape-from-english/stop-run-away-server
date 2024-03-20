@@ -22,8 +22,8 @@ Content-Type: application/json
 
 ### 단어 랜덤 제출
 
-GET localhost:8080/v1/words/status/not-solved/random
+GET 3.39.240.48:8080/v1/words/status/not-solved/random
 
 ### 미제출 단어 존재 여부
 
-GET localhost:8080/v1/words/status/not-solved/existence
+GET 3.39.240.48:8080/v1/words/status/not-solved/existence

@@ -1,4 +1,4 @@
-package side.stoprunaway
+package side.stoprunaway.common
 
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.springframework.web.multipart.MultipartFile
@@ -15,10 +15,12 @@ class ExcelUtils {
                         val firstCell = row.getCell(0)
                         val secondCell = row.getCell(1)
                         if (firstCell != null && secondCell != null) {
-                            ret.add(Model.Word(
-                                firstCell.toString(),
-                                secondCell.toString()
-                            ))
+                            ret.add(
+                                Model.Word(
+                                    firstCell.toString(),
+                                    secondCell.toString()
+                                )
+                            )
                         }
                     }
                 }

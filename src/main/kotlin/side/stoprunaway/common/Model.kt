@@ -1,4 +1,4 @@
-package side.stoprunaway
+package side.stoprunaway.common
 
 class Model {
     data class Word(
