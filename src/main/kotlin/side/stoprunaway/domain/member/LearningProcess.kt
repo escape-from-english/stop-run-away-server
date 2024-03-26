@@ -5,7 +5,7 @@ import side.stoprunaway.domain.Base
 
 @Entity
 class LearningProcess(
-    @Column(name = "leaning_process_id")
+    @Column(name = "learning_process_id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L,
 
