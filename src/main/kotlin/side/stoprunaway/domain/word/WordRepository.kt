@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface WordRepository: JpaRepository<Word, Long> {
 
-    fun existsByName(name: String): Boolean
+    fun existsByNameAndWeekNumber(name: String, weekNumber: Int): Boolean
 
     fun findAllByStatus(status: WordStatus): List<Word>
 
