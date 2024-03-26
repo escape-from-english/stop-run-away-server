@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile
 class ExcelUtils {
 
     companion object {
-        fun readFirstColumn(file: MultipartFile): List<Model.Word> {
-            val ret = mutableListOf<Model.Word>()
+        fun readFirstColumn(file: MultipartFile): List<Model.ExcelWord> {
+            val ret = mutableListOf<Model.ExcelWord>()
             file.inputStream.use { inputStream ->
                 WorkbookFactory.create(inputStream).use { workbook ->
                     val sheet = workbook.getSheetAt(0)
@@ -16,9 +16,9 @@ class ExcelUtils {
                         val secondCell = row.getCell(1)
                         if (firstCell != null && secondCell != null) {
                             ret.add(
-                                Model.Word(
+                                Model.ExcelWord(
                                     firstCell.toString(),
-                                    secondCell.toString()
+                                    secondCell.toString(),
                                 )
                             )
                         }

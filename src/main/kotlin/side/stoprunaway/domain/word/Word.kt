@@ -10,25 +10,28 @@ class Word(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0L,
 
-    var name: String,
-
-    var meaning: String,
-
     @JoinColumn(name = "member_id")
     @ManyToOne(fetch = FetchType.LAZY)
     var member: Member,
+
+    var weekNumber: Int,
+
+    var name: String,
+
+    var meaning: String,
 
     @Enumerated(value = EnumType.ORDINAL)
     var status: WordStatus,
 ): Base() {
 
     companion object {
-        fun make(name: String, meaning: String, identifier: Long): Word {
+        fun make(name: String, meaning: String, member: Member): Word {
             return Word(
                 name = name,
                 meaning = meaning,
                 status = WordStatus.NOT_SOLVED,
-                member = Member(id = identifier)
+                member = member,
+                weekNumber = member.learningProcess!!.weekNumber,
             )
         }
     }

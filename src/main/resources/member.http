@@ -1,8 +1,20 @@
 ### 로그인
 
-POST localhost:8080/v1/member/sign-in
+POST http://localhost:8080/v1/members/sign-in
 Content-Type: application/json
 
 {
-  "name": "joohyun"
+  "name": "jh"
 }
+
+### 프로필 조회
+
+GET http://localhost:8080/v1/members/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+
+### 회차 완료
+
+POST http://localhost:8080/v1/members/progress/complete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ

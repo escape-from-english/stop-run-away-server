@@ -2,6 +2,7 @@ package side.stoprunaway.domain.word
 
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -40,6 +41,12 @@ class WordController(
     @GetMapping("/v1/words/status/not-solved")
     fun getWords(metadata: HttpServletRequest): Response.GetWords {
         return Response.GetWords(wordService.getWords((metadata.getAttribute("identifier") as String).toLong()))
+    }
+
+    @RequiredAuth
+    @GetMapping("/v1/words/weeks/{weekNumber}")
+    fun getWordsByWeekNumber(@PathVariable weekNumber: Int, metadata: HttpServletRequest): Response.GetWords {
+        return Response.GetWords(wordService.getWordsByWeek(weekNumber, (metadata.getAttribute("identifier") as String).toLong()))
     }
 }
 

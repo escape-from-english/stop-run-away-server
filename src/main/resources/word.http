@@ -2,7 +2,7 @@
 
 POST localhost:8080/v1/words/texts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzEwOTI3OTcyLCJleHAiOjE3MTA5MjgyMzF9.SP_0xI_amhmxmBD2QispooPvHridEixo2WW7lbvSzK4lN54iQIfY8j_8dLGR3BhSRqi8PmpQxlm7p-X6kJ2RPA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
 
 {
   "words": [
@@ -32,4 +32,9 @@ GET localhost:8080/v1/words/status/not-solved/existence
 ### 등록한 단어중 미출제 단어들 조회
 
 GET localhost:8080/v1/words/status/not-solved
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzEwOTI3OTcyLCJleHAiOjE3MTA5MjgyMzF9.SP_0xI_amhmxmBD2QispooPvHridEixo2WW7lbvSzK4lN54iQIfY8j_8dLGR3BhSRqi8PmpQxlm7p-X6kJ2RPA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+
+### 해당 주차 단어들 조회
+
+GET localhost:8080/v1/words/weeks/5
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
