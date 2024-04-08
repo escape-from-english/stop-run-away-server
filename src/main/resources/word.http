@@ -40,3 +40,8 @@ Authorization: Bearer {{token}}
 
 GET {{host}}/v1/words/weeks/5
 Authorization: Bearer {{token}}
+
+### 해당 주차에 등록된 단어들 개수 조회
+
+GET {{host}}/v1/words/weeks/5/count
+Authorization: Bearer {{token}}

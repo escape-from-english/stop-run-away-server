@@ -50,6 +50,12 @@ class WordController(
     fun getWordsByWeekNumber(@PathVariable weekNumber: Int, metadata: HttpServletRequest): Response.GetWords {
         return Response.GetWords(wordService.getWordsByWeek(weekNumber, (metadata.getAttribute("identifier") as String).toLong()))
     }
+
+    @RequiredAuth
+    @GetMapping("/v1/words/weeks/{weekNumber}/count")
+    fun getRegisteredWordsCount(@PathVariable weekNumber: Int, metadata: HttpServletRequest): Response.GetRegisteredWordsCount {
+        return Response.GetRegisteredWordsCount(wordService.getRegisteredWordsCount(weekNumber, (metadata.getAttribute("identifier") as String).toLong()))
+    }
 }
 
 class Request {
@@ -69,5 +75,9 @@ class Response {
 
     data class GetWords(
         val words: List<Model.Word>
+    )
+
+    data class GetRegisteredWordsCount(
+        val registeredWordsCount: Int,
     )
 }

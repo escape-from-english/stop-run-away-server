@@ -63,4 +63,9 @@ class WordService(
                 it.status
             ) }
     }
+
+    fun getRegisteredWordsCount(weekNumber: Int, identifier: Long): Int {
+        val member = memberRepository.findById(identifier).get()
+        return wordRepository.countWordsByWeekNumberAndTeam(weekNumber, member.team!!)
+    }
 }

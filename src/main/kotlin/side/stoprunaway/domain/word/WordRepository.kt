@@ -19,4 +19,6 @@ interface WordRepository: JpaRepository<Word, Long> {
     fun findAllByMemberIdAndStatusAndTeam(memberId: Long, status: WordStatus, team: Team): List<Word>
 
     fun findAllByMemberIdAndWeekNumberAndTeam(memberId: Long, weekNumber: Int, team: Team): List<Word>
+
+    fun countWordsByWeekNumberAndTeam(weekNumber: Int, team: Team): Int
 }
