@@ -1,11 +1,14 @@
 package side.stoprunaway.domain.word
 
 import org.springframework.data.jpa.repository.JpaRepository
+import side.stoprunaway.domain.member.Member
 import side.stoprunaway.domain.team.Team
 
 interface WordRepository: JpaRepository<Word, Long> {
 
     fun existsByNameAndWeekNumber(name: String, weekNumber: Int): Boolean
+
+    fun existsByNameAndWeekNumberAndMember(name: String, weekNumber: Int, member: Member): Boolean
 
     fun findAllByNameAndTeam(name: String, team: Team): List<Word>
 

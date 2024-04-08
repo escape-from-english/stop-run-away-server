@@ -16,7 +16,8 @@ class WordService(
     @Transactional
     fun addWord(words: List<Model.Word>, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
-        words.map { Word.make(it.name, it.meaning, member) }
+        words.filterNot { wordRepository.existsByNameAndWeekNumberAndMember(it.name, member.learningProcess!!.weekNumber, member) }
+            .map { Word.make(it.name, it.meaning, member) }
             .forEach { wordRepository.save(it) }
     }
 
@@ -24,6 +25,7 @@ class WordService(
     fun addWordExcel(excelFile: MultipartFile, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
         ExcelUtils.readFirstColumn(excelFile)
+            .filterNot { wordRepository.existsByNameAndWeekNumberAndMember(it.name, member.learningProcess!!.weekNumber, member) }
             .map { Word.make(it.name, it.meaning, member) }
             .forEach { wordRepository.save(it) }
     }
