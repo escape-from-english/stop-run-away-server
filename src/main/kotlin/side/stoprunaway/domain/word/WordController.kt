@@ -27,14 +27,16 @@ class WordController(
         wordService.addWordExcel(request.excelFile, (metadata.getAttribute("identifier") as String).toLong())
     }
 
+    @RequiredAuth
     @GetMapping("/v1/words/status/not-solved/random")
-    fun getNotSolvedRandomWord(): Response.GetNotSolvedRandomWord {
-        return Response.GetNotSolvedRandomWord(wordService.getNotSolvedRandomWord())
+    fun getNotSolvedRandomWord(metadata: HttpServletRequest): Response.GetNotSolvedRandomWord {
+        return Response.GetNotSolvedRandomWord(wordService.getNotSolvedRandomWord((metadata.getAttribute("identifier") as String).toLong()))
     }
 
+    @RequiredAuth
     @GetMapping("/v1/words/status/not-solved/existence")
-    fun isNotSolvedWordsExistence(): Boolean {
-        return wordService.isWordsNotSolvedExistence()
+    fun isNotSolvedWordsExistence(metadata: HttpServletRequest): Boolean {
+        return wordService.isWordsNotSolvedExistence((metadata.getAttribute("identifier") as String).toLong())
     }
 
     @RequiredAuth

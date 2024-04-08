@@ -20,10 +20,8 @@ class MemberController(
     @RequiredAuth
     @GetMapping("/v1/members/profile")
     fun getProfile(metadata: HttpServletRequest): Response.GetProfile {
-        val (name, weekNumber) = memberService.getProfile((metadata.getAttribute("identifier") as String).toLong())
-        return Response.GetProfile(
-            name, weekNumber
-        )
+        val (name, weekNumber, selectedTeamId) = memberService.getProfile((metadata.getAttribute("identifier") as String).toLong())
+        return Response.GetProfile(name, weekNumber, selectedTeamId)
     }
 
     @RequiredAuth
@@ -47,5 +45,6 @@ class Response {
     data class GetProfile(
         val name: String,
         val weekNumber: Int,
+        val selectedTeamId: Long?,
     )
 }

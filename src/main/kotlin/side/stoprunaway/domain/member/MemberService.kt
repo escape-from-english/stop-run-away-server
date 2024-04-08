@@ -14,11 +14,12 @@ class MemberService(
         return JwtUtils.generateToken(member.id)
     }
 
-    fun getProfile(identifier: Long): Pair<String, Int> {
+    fun getProfile(identifier: Long): Triple<String, Int, Long?> {
         val member = memberRepository.findById(identifier).get()
-        return Pair(
+        return Triple(
             member.name,
-            member.learningProcess!!.weekNumber
+            member.learningProcess!!.weekNumber,
+            member.team?.id
         )
     }
 

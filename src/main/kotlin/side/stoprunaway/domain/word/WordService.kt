@@ -29,19 +29,22 @@ class WordService(
     }
 
     @Transactional
-    fun getNotSolvedRandomWord(): Model.Word? {
-        val pickedWord = wordRepository.findAllByStatus(WordStatus.NOT_SOLVED).randomOrNull() ?: return null
-        val duplicatedPickedWords = wordRepository.findAllByName(pickedWord.name)
+    fun getNotSolvedRandomWord(identifier: Long): Model.Word? {
+        val member = memberRepository.findById(identifier).get()
+        val pickedWord = wordRepository.findAllByStatusAndTeam(WordStatus.NOT_SOLVED, member.team!!).randomOrNull() ?: return null
+        val duplicatedPickedWords = wordRepository.findAllByNameAndTeam(pickedWord.name, member.team!!)
         duplicatedPickedWords.forEach { it.submit() }
         return pickedWord.let { Model.Word(it.name, it.meaning, it.status) }
     }
 
-    fun isWordsNotSolvedExistence(): Boolean {
-        return wordRepository.existsByStatus(WordStatus.NOT_SOLVED)
+    fun isWordsNotSolvedExistence(identifier: Long): Boolean {
+        val member = memberRepository.findById(identifier).get()
+        return wordRepository.existsByStatusAndTeam(WordStatus.NOT_SOLVED, member.team!!)
     }
 
     fun getWords(identifier: Long): List<Model.Word> {
-        return wordRepository.findAllByMemberIdAndStatus(identifier, WordStatus.NOT_SOLVED)
+        val member = memberRepository.findById(identifier).get()
+        return wordRepository.findAllByMemberIdAndStatusAndTeam(identifier, WordStatus.NOT_SOLVED, member.team!!)
             .map { Model.Word(
                 it.name,
                 it.meaning,
@@ -50,7 +53,8 @@ class WordService(
     }
 
     fun getWordsByWeek(weekNumber: Int, identifier: Long): List<Model.Word> {
-        return wordRepository.findAllByMemberIdAndWeekNumber(identifier, weekNumber)
+        val member = memberRepository.findById(identifier).get()
+        return wordRepository.findAllByMemberIdAndWeekNumberAndTeam(identifier, weekNumber, member.team!!)
             .map { Model.Word(
                 it.name,
                 it.meaning,

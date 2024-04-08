@@ -3,6 +3,7 @@ package side.stoprunaway.domain.word
 import jakarta.persistence.*
 import side.stoprunaway.domain.Base
 import side.stoprunaway.domain.member.Member
+import side.stoprunaway.domain.team.Team
 
 @Entity
 class Word(
@@ -13,6 +14,10 @@ class Word(
     @JoinColumn(name = "member_id")
     @ManyToOne(fetch = FetchType.LAZY)
     var member: Member,
+
+    @JoinColumn(name = "team_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    var team: Team,
 
     var weekNumber: Int,
 
@@ -32,6 +37,7 @@ class Word(
                 status = WordStatus.NOT_SOLVED,
                 member = member,
                 weekNumber = member.learningProcess!!.weekNumber,
+                team = member.team!!
             )
         }
     }
