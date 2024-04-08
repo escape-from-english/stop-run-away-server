@@ -15,14 +15,13 @@ class TeamMemberService(
         val teamMembers = teamMemberRepository.findAllByMember(member)
         return teamMembers.map {
             val team = it.team
-            val innerMember = it.member
             val innerTeamMembers = teamMemberRepository.findAllByTeam(it.team)
             Model.TeamMember(
                 id = team.id,
                 name = team.name,
-                members = innerTeamMembers.map { Model.Member(
-                        id = innerMember.id,
-                        name = innerMember.name
+                members = innerTeamMembers.map { innerTeamMember ->  Model.Member(
+                        id = innerTeamMember.member.id,
+                        name = innerTeamMember.member.name
                     )
                 }
             )
