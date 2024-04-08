@@ -13,4 +13,15 @@ class Model {
         val name: String,
         val meaning: String,
     )
+
+    data class Member(
+        val id: Long,
+        val name: String,
+    )
+
+    data class TeamMember(
+        val id: Long,
+        val name: String,
+        val members: List<Member>
+    )
 }
