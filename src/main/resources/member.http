@@ -1,6 +1,6 @@
 ### 로그인
 
-POST http://localhost:8080/v1/members/sign-in
+POST {{host}}/v1/members/sign-in
 Content-Type: application/json
 
 {
@@ -9,12 +9,12 @@ Content-Type: application/json
 
 ### 프로필 조회
 
-GET http://localhost:8080/v1/members/profile
+GET {{host}}/v1/members/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+Authorization: Bearer {{token}}
 
 ### 회차 완료
 
-POST http://localhost:8080/v1/members/progress/complete
+POST {{host}}/v1/members/progress/complete
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+Authorization: Bearer {{token}}

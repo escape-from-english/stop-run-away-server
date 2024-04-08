@@ -1,8 +1,8 @@
 ### 단어 텍스트로 추가
 
-POST localhost:8080/v1/words/texts
+POST {{host}}/v1/words/texts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+Authorization: Bearer {{token}}
 
 {
   "words": [
@@ -23,18 +23,20 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2L
 
 ### 단어 랜덤 출제
 
-GET localhost:8080/v1/words/status/not-solved/random
+GET {{host}}/v1/words/status/not-solved/random
+Authorization: Bearer {{token}}
 
 ### 미제출 단어 존재 여부
 
-GET localhost:8080/v1/words/status/not-solved/existence
+GET {{host}}/v1/words/status/not-solved/existence
+Authorization: Bearer {{token}}
 
 ### 등록한 단어중 미출제 단어들 조회
 
-GET localhost:8080/v1/words/status/not-solved
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+GET {{host}}/v1/words/status/not-solved
+Authorization: Bearer {{token}}
 
 ### 해당 주차 단어들 조회
 
-GET localhost:8080/v1/words/weeks/5
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzExNDM3OTg2LCJleHAiOjE3MTE0MzgyNDZ9.5r69wETdlCk5cl-UAJqb0pKOnjHjIM5S15XjwfG3WUgaM_Cy3L8aZGiWnP-Y7Vhowrkq31Dx8UFD5ywjvQDwsQ
+GET {{host}}/v1/words/weeks/5
+Authorization: Bearer {{token}}

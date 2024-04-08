@@ -1,0 +1,15 @@
+### 사용자 참여팀 조회
+
+GET {{host}}/v1/teams
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### 사용자 팀 변경
+
+POST {{host}}/v1/teams
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "teamId": 1
+}
