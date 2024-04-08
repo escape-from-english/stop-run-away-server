@@ -6,6 +6,8 @@ interface WordRepository: JpaRepository<Word, Long> {
 
     fun existsByNameAndWeekNumber(name: String, weekNumber: Int): Boolean
 
+    fun findAllByName(name: String): List<Word>
+
     fun findAllByStatus(status: WordStatus): List<Word>
 
     fun existsByStatus(status: WordStatus): Boolean

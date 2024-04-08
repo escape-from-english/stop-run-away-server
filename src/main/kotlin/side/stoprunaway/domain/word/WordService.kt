@@ -16,8 +16,7 @@ class WordService(
     @Transactional
     fun addWord(words: List<Model.Word>, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
-        words.filterNot { wordRepository.existsByNameAndWeekNumber(it.name, member.learningProcess!!.weekNumber) }
-            .map { Word.make(it.name, it.meaning, member) }
+        words.map { Word.make(it.name, it.meaning, member) }
             .forEach { wordRepository.save(it) }
     }
 
@@ -25,16 +24,16 @@ class WordService(
     fun addWordExcel(excelFile: MultipartFile, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
         ExcelUtils.readFirstColumn(excelFile)
-            .filterNot { wordRepository.existsByNameAndWeekNumber(it.name, member.learningProcess!!.weekNumber) }
             .map { Word.make(it.name, it.meaning, member) }
             .forEach { wordRepository.save(it) }
     }
 
     @Transactional
     fun getNotSolvedRandomWord(): Model.Word? {
-        val pickedWord = wordRepository.findAllByStatus(WordStatus.NOT_SOLVED).randomOrNull()
-        pickedWord?.submit()
-        return pickedWord?.let { Model.Word(it.name, it.meaning, it.status) }
+        val pickedWord = wordRepository.findAllByStatus(WordStatus.NOT_SOLVED).randomOrNull() ?: return null
+        val duplicatedPickedWords = wordRepository.findAllByName(pickedWord.name)
+        duplicatedPickedWords.forEach { it.submit() }
+        return pickedWord.let { Model.Word(it.name, it.meaning, it.status) }
     }
 
     fun isWordsNotSolvedExistence(): Boolean {
