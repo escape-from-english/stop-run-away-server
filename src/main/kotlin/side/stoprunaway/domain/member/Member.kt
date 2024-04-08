@@ -20,4 +20,6 @@ class Member(
     @OneToOne(fetch = FetchType.EAGER)
     var learningProcess: LearningProcess? = null,
 ): Base() {
+
+    fun updateTeam(team: Team) { this.team = team }
 }
