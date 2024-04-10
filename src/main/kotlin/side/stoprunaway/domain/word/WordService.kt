@@ -24,7 +24,7 @@ class WordService(
     @Transactional
     fun addWords(excelFile: MultipartFile, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
-        ExcelUtils.readFirstColumn(excelFile)
+        ExcelUtils.readFirstColumn(excelFile, member.learningProcess!!.weekNumber)
             .filterNot { wordRepository.existsByNameAndWeekNumberAndMember(it.name, member.learningProcess!!.weekNumber, member) }
             .map { Word.make(it.name, it.meaning, member) }
             .forEach { wordRepository.save(it) }
