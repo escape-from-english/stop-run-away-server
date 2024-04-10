@@ -11,7 +11,7 @@ class ExcelUtils {
             val ret = mutableListOf<Model.ExcelWord>()
             file.inputStream.use { inputStream ->
                 WorkbookFactory.create(inputStream).use { workbook ->
-                    val sheet = workbook.getSheet("${weekNumber}주차") ?: return ret
+                    val sheet = workbook.getSheet("${weekNumber}주차") ?: throw KnownException("'${weekNumber}주차'의 시트가 존재하지 않습니다.")
                     for (row in sheet) {
                         val firstCell = row.getCell(0)
                         val secondCell = row.getCell(1)
