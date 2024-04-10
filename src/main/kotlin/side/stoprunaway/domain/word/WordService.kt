@@ -14,7 +14,7 @@ class WordService(
 ) {
 
     @Transactional
-    fun addWord(words: List<Model.Word>, identifier: Long) {
+    fun addWords(words: List<Model.Word>, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
         words.filterNot { wordRepository.existsByNameAndWeekNumberAndMember(it.name, member.learningProcess!!.weekNumber, member) }
             .map { Word.make(it.name, it.meaning, member) }
@@ -22,7 +22,7 @@ class WordService(
     }
 
     @Transactional
-    fun addWordExcel(excelFile: MultipartFile, identifier: Long) {
+    fun addWords(excelFile: MultipartFile, identifier: Long) {
         val member = memberRepository.findById(identifier).get()
         ExcelUtils.readFirstColumn(excelFile)
             .filterNot { wordRepository.existsByNameAndWeekNumberAndMember(it.name, member.learningProcess!!.weekNumber, member) }

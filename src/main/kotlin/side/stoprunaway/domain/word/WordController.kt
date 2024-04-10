@@ -17,14 +17,14 @@ class WordController(
 
     @RequiredAuth
     @PostMapping("/v1/words/texts")
-    fun addWord(@RequestBody request: Request.AddWordText, metadata: HttpServletRequest) {
-        wordService.addWord(request.words, (metadata.getAttribute("identifier") as String).toLong())
+    fun addWords(@RequestBody request: Request.AddWordText, metadata: HttpServletRequest) {
+        wordService.addWords(request.words, (metadata.getAttribute("identifier") as String).toLong())
     }
 
     @RequiredAuth
     @PostMapping("/v1/words/excels")
-    fun addWordExcel(request: Request.AddWordExcel, metadata: HttpServletRequest) {
-        wordService.addWordExcel(request.excelFile, (metadata.getAttribute("identifier") as String).toLong())
+    fun addWords(request: Request.AddWordExcel, metadata: HttpServletRequest) {
+        wordService.addWords(request.excelFile, (metadata.getAttribute("identifier") as String).toLong())
     }
 
     @RequiredAuth
